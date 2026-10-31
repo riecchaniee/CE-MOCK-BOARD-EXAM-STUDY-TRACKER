@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Free study tracker for the Philippine civil engineering board exam: topics, notes, weak areas, mock exam scores.">
+<title>CE Board Exam Study Tracker</title>
+<style>
+:root{--bg:#f6f5f1;--card:#fff;--tx:#1d2a33;--mu:#5d6a73;--bd:#d9d6cd;--ac:#17627d;--s0:#e9e7e1;--s1:#f2c14e;--s2:#3f86b0;--s3:#2f8a5c;--bad:#b3392f;--on:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14191d;--card:#1d252b;--tx:#e8ecee;--mu:#9aa6ae;--bd:#34404a;--ac:#6cc0dc;--s0:#2b353c;--s1:#c99a2e;--s2:#3f86b0;--s3:#2f8a5c;--bad:#ff8a7e}}
+:root[data-theme="dark"]{--bg:#14191d;--card:#1d252b;--tx:#e8ecee;--mu:#9aa6ae;--bd:#34404a;--ac:#6cc0dc;--s0:#2b353c;--s1:#c99a2e;--s2:#3f86b0;--s3:#2f8a5c;--bad:#ff8a7e}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:780px;margin:0 auto;padding:20px 16px 56px}
+h1{font-size:1.4rem;margin:0 0 4px}h2{font-size:1rem;margin:0}h3{font-size:.95rem;margin:0 0 8px}
+.sub,.mu{color:var(--mu);font-size:.875rem}.sub{margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+.row{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.big{font-size:2rem;font-weight:700;line-height:1}
+.bar{height:8px;background:var(--s0);border-radius:99px;overflow:hidden;margin-top:8px}
+.bar>i{display:block;height:100%;background:var(--s3);transition:width .25s}
+label{font-size:.85rem;color:var(--mu);display:block}
+input,select,textarea,button{font:inherit;color:var(--tx)}
+input,select,textarea{background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:6px 10px;max-width:100%}
+textarea{width:100%;min-height:80px;margin-top:6px}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.tabs{display:flex;gap:8px;margin:16px 0 12px;overflow-x:auto;padding-bottom:2px}
+.tab{flex:1;min-width:110px;text-align:left;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:8px 12px}
+.tab b{display:block}.tab small{color:var(--mu)}
+.tab[aria-selected=true]{border-color:var(--ac);box-shadow:0 0 0 2px var(--ac)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.chip{border:1px solid var(--bd);background:var(--card);border-radius:99px;padding:4px 12px;font-size:.85rem}
+.chip[aria-pressed=true]{background:var(--ac);color:var(--on);border-color:var(--ac)}
+.gh{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.t{padding:8px 0;border-top:1px solid var(--bd)}.t:first-of-type{border-top:0}
+.tr{display:flex;gap:8px;align-items:center}.nm{flex:1}
+.st{flex:none;min-width:104px;font-size:.8rem;font-weight:600;border:0;border-radius:99px;padding:6px 10px;background:var(--s0)}
+.st[data-v="1"]{background:var(--s1);color:#2a2000}.st[data-v="2"]{background:var(--s2);color:var(--on)}.st[data-v="3"]{background:var(--s3);color:var(--on)}
+.wk{flex:none;font-size:.8rem;background:none;border:1px solid var(--bd);border-radius:99px;padding:5px 10px}
+.wk[aria-pressed=true]{border-color:var(--bad);color:var(--bad);font-weight:700}
+details summary{cursor:pointer;font-size:.8rem;color:var(--mu);margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{text-align:left;padding:6px 4px;border-top:1px solid var(--bd)}th{border:0;color:var(--mu);font-weight:600}
+.bad{color:var(--bad);font-weight:600}.ok{color:var(--s3);font-weight:600}
+.frm{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;align-items:end}
+.btn{background:var(--ac);color:var(--on);border:0;border-radius:8px;padding:8px 14px;font-weight:600}
+.btn2{background:none;border:1px solid var(--bd);border-radius:8px;padding:6px 12px}
+svg{width:100%;height:auto;display:block}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<h1>CE Board Exam Study Tracker</h1>
+<p class="sub">Track topics, notes, weak areas and mock exams. Your data stays in your own browser; use Backup to move it between devices.</p>
+<div class="card">
+ <div class="row">
+  <div><div class="big" id="pct">0%</div><span class="mu" id="cnt"></span><br><span class="mu" id="wkc"></span></div>
+  <div><label for="ed">Exam date</label><input type="date" id="ed"><div class="mu" id="days" aria-live="polite"></div></div>
+  <div><label for="mins">Study today (minutes)</label><div style="display:flex;gap:6px"><input type="number" id="mins" min="1" max="1000" style="width:80px"><button class="btn2" id="logb">Log</button></div><div class="mu" id="slog"></div></div>
+ </div>
+ <div class="bar" role="progressbar" aria-label="Overall progress" id="pb" aria-valuemin="0" aria-valuemax="100"><i id="obar"></i></div>
+</div>
+<div class="tabs" id="tabs" role="tablist" aria-label="Sections"></div>
+<div id="view"></div>
+<details class="card"><summary>Backup &amp; move to another device</summary>
+ <p class="mu">Copy this text and keep it safe. To restore on another device, paste it here and press Restore.</p>
+ <textarea id="bk" aria-label="Backup data"></textarea>
+ <p><button class="btn2" id="cp">Copy</button> <button class="btn2" id="rs">Restore from text</button> <button class="btn2" id="reset">Reset everything</button> <span class="mu" id="bmsg" role="status"></span></p>
+</details>
+</main>
+<script>
+const $=i=>document.getElementById(i);
+const D=[
+{n:"MSTE",t:"Math, Surveying & Transport",g:[
+["Algebra & Advanced Math","Miscellaneous Math|Arithmetic/Geometric Series|Word Problems|Permutations & Combinations|Probability & Statistics|Probability Distributions"],
+["Trigonometry & Geometry","Trigonometric Functions|Inscribed/Circumscribed Figures|Spherical Trigonometry|2D/3D Geometry|Circles|Conic Sections|Polar Coordinates"],
+["Calculus: Differential","Derivatives|Maxima/Minima|Related Rates|Optimization"],
+["Calculus: Integral","Antiderivatives|Arc Length|Solids of Revolution|Centroids / Moment of Inertia"],
+["Engineering Economics","Interest & Annuity|Depreciation|Inflation|Return on Investment (ROI)|Stocks & Bonds"],
+["Surveying","Measurements|Probable Value|Tape Corrections|Leveling|Curvature & Refraction|Stadia|DMD/DPD|Traverses (Compass/Transit Rule)|Earthworks"],
+["Transportation & Highway Engineering","Horizontal & Vertical Curves|Accident Analysis|Pavement Design|Sight Distance|Railroad Engineering|Ports & Harbors"]]},
+{n:"HPGE",t:"Geotechnical & Hydraulics",g:[
+["Geotechnical Engineering / Soil Mechanics","Soil Properties & Atterberg Limits|Flow of Water through Soil & Flow Nets|Soil Stress, Settlement, Consolidation & Shear Strength|Lateral Earth Pressure & Boussinesq Equation|Bearing Capacity & Pile Foundations"],
+["Hydraulics & Fluid Mechanics","Water Properties, Hydrostatic Pressure & Buoyancy|Stability of Floating Bodies & Dams|Thin-Walled Vessels, Moving & Rotating Vessels|Energy Equation & Head Losses|Pipe Systems (Three-Reservoir, Series/Parallel)|Orifice Flow, Weirs, Open Channels (Critical & Non-Uniform Flow)|Hydrodynamics"]]},
+{n:"PSAD",t:"Structural & Construction",g:[
+["Structural Mechanics","Statics (2D & 3D)|Cables & Trusses|Friction|Kinematics & Kinetics"],
+["Strength of Materials","Stress & Strain|Thin-Walled Vessels|Torsion|Helical Springs|Flexural Fiber Stress|Transverse Shear Stress|Composite Beams|Mohr’s Circle"],
+["Theory of Structures","Stability & Determinacy|Double Integration Method (DIM)|Area-Moment Method (AMM)|Conjugate Beam Method|Superposition & Virtual Work (Beams & Trusses)|Three-Moment Equation & Fixed-End Moments|Influence Lines (Beams & Trusses)"],
+["Structural Steel Design","Introduction|Bending Stress|Compressive Stress|Steel Columns|Purlins|Bolts|Welds"],
+["Reinforced Concrete Design","Singly & Doubly Reinforced Beams|T-Beams|Shear|Slabs|Columns (Axial & Bending)|Footings (Isolated, Moment, Pile)"],
+["Miscellaneous & Construction","Prestressed Concrete|Seismic Design|Construction Practices"]]}
+];
+D.forEach(s=>s.g=s.g.map(([name,ts])=>({name,ts:ts.split("|")})));
+const L=["Not started","Studying","Reviewed","Mastered"],KEY="ce-tracker-v2";
+let st={S:{},W:{},N:{},M:[],ED:"",T:70,L:{}},tab=0,F={f:"all",q:""},O=new Set();
+try{const r=JSON.parse(localStorage.getItem(KEY)||localStorage.getItem("ce-tracker-v1")||"null");if(r)Object.assign(st,r)}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+const id=(s,g,t)=>s+"|"+g+"|"+t;
+const keysOf=i=>D[i].g.flatMap(g=>g.ts.map(t=>id(D[i].n,g.name,t)));
+function pr(ks){let sum=0,done=0;ks.forEach(k=>{const v=st.S[k]||0;sum+=v;if(v==3)done++});return{n:ks.length,done,p:ks.length?Math.round(sum/(3*ks.length)*100):0}}
+const dk=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function head(){
+ const all=D.flatMap((_,i)=>keysOf(i)),o=pr(all);
+ $("pct").textContent=o.p+"%";$("cnt").textContent=o.done+" of "+o.n+" topics mastered";
+ $("obar").style.width=o.p+"%";$("pb").setAttribute("aria-valuenow",o.p);
+ $("wkc").textContent=Object.values(st.W).filter(Boolean).length+" topics flagged weak";
+ if(st.ED){const d=Math.ceil((new Date(st.ED+"T00:00")-new Date())/864e5);$("days").textContent=d>0?d+" days to go":d==0?"Exam day!":"Date has passed"}else $("days").textContent="";
+ let wk=0,streak=0,d=new Date();for(let i=0;i<7;i++){wk+=st.L[dk(d)]||0;d.setDate(d.getDate()-1)}
+ d=new Date();if(!st.L[dk(d)])d.setDate(d.getDate()-1);while(st.L[dk(d)]){streak++;d.setDate(d.getDate()-1)}
+ $("slog").textContent="Today "+(st.L[dk(new Date())]||0)+" min · 7 days "+Math.round(wk/6)/10+" h · streak "+streak;
+ $("bk").value=JSON.stringify(st);
+}
+function tabs(){
+ const t=$("tabs");t.innerHTML="";
+ D.concat([{n:"Mocks",t:"Score log"}]).forEach((s,i)=>{
+  const b=el("button","tab");b.setAttribute("role","tab");b.setAttribute("aria-selected",i==tab);
+  const x=el("b",0,s.n),y=el("small",0,i<3?s.t+" · "+pr(keysOf(i)).p+"%":s.t);b.append(x,y);
+  b.onclick=()=>{tab=i;render()};t.appendChild(b)});
+}
+function topics(v){
+ const s=D[tab],q=F.q.toLowerCase();
+ const bar=el("div","chips");
+ [["all","All"],["weak","Weak"],["open","Not mastered"],["new","Not started"]].forEach(([f,n])=>{
+  const b=el("button","chip",n);b.setAttribute("aria-pressed",F.f==f);b.onclick=()=>{F.f=f;render()};bar.appendChild(b)});
+ const si=el("input");si.type="search";si.placeholder="Search topics and notes";si.value=F.q;si.setAttribute("aria-label","Search topics and notes");
+ si.onchange=()=>{F.q=si.value;render()};bar.appendChild(si);v.appendChild(bar);
+ let any=0;
+ s.g.forEach(g=>{
+  const ks=g.ts.map(t=>id(s.n,g.name,t)),p=pr(ks);
+  const rows=g.ts.filter(t=>{const k=id(s.n,g.name,t),n=st.S[k]||0;
+   if(q&&!(t+" "+(st.N[k]||"")).toLowerCase().includes(q))return false;
+   return F.f=="weak"?st.W[k]:F.f=="open"?n<3:F.f=="new"?n==0:true});
+  if(!rows.length)return;any=1;
+  const c=el("section","card"),h=el("div","gh");h.append(el("h2",0,g.name),el("span","mu",p.done+"/"+p.n+" mastered"));
+  const b=el("div","bar");b.style.margin="6px 0";const i=el("i");i.style.width=p.p+"%";b.appendChild(i);c.append(h,b);
+  rows.forEach(t=>{
+   const k=id(s.n,g.name,t),n=st.S[k]||0,r=el("div","t"),tr=el("div","tr");
+   const wb=el("button","wk","⚑ Weak");wb.setAttribute("aria-pressed",!!st.W[k]);wb.setAttribute("aria-label","Mark "+t+" as weak area");
+   wb.onclick=()=>{st.W[k]=!st.W[k];save();render()};
+   const sb=el("button","st",L[n]);sb.dataset.v=n;sb.setAttribute("aria-label",t+": "+L[n]+". Tap to change status");
+   sb.onclick=()=>{st.S[k]=((st.S[k]||0)+1)%4;save();render()};
+   tr.append(el("span","nm",t),wb,sb);
+   const d=el("details"),sm=el("summary",0,st.N[k]?"Notes ✎":"Add notes");d.open=O.has(k);
+   d.ontoggle=()=>d.open?O.add(k):O.delete(k);
+   const ta=el("textarea");ta.value=st.N[k]||"";ta.setAttribute("aria-label","Notes for "+t);ta.placeholder="Formulas, mistakes, tricks…";
+   ta.oninput=()=>{st.N[k]=ta.value;sm.textContent=ta.value?"Notes ✎":"Add notes";save()};
+   d.append(sm,ta);r.append(tr,d);c.appendChild(r)});
+  v.appendChild(c)});
+ if(!any)v.appendChild(el("p","mu","Nothing matches this filter."));
+}
+function mocks(v){
+ const c=el("section","card");
+ c.innerHTML='<h3>Log a mock exam</h3><div class="frm"><div><label for="md">Date</label><input type="date" id="md"></div><div><label for="ms">Subject</label><select id="ms"><option>MSTE</option><option>HPGE</option><option>PSAD</option></select></div><div><label for="mc">Correct</label><input type="number" id="mc" min="0"></div><div><label for="mn">Total items</label><input type="number" id="mn" min="1"></div></div><label for="mt" style="margin-top:10px">Notes (what went wrong?)</label><input id="mt" style="width:100%"><p><button class="btn" id="ma">Add score</button> <span class="mu" id="mm" role="status"></span></p>';
+ v.appendChild(c);
+ const g=el("section","card");g.innerHTML='<label for="tg">Target general average (%)</label><input type="number" id="tg" min="1" max="100" style="width:80px"><p class="mu">Default 70%, the usual passing average, with no subject below 50%. Edit if your rules differ.</p>';
+ v.appendChild(g);
+ setTimeout(()=>{$("md").value=dk(new Date());$("tg").value=st.T;
+  $("tg").onchange=()=>{st.T=+$("tg").value||70;save();render()};
+  $("ma").onclick=()=>{const cc=+$("mc").value,nn=+$("mn").value;
+   if(!(nn>0)||cc<0||cc>nn||$("mc").value===""){$("mm").textContent="Enter correct answers and total items (correct cannot exceed total).";return}
+   st.M.push({d:$("md").value,s:$("ms").value,c:cc,n:nn,t:$("mt").value});save();render()}});
+ const M=st.M.slice().sort((a,b)=>a.d<b.d?-1:1);
+ if(!M.length){v.appendChild(el("p","mu","No mock exams logged yet."));return}
+ const pc=m=>Math.round(m.c/m.n*1000)/10;
+ const last={};M.forEach(m=>last[m.s]=m);
+ const subs=Object.keys(last),avg=Math.round(subs.reduce((a,s)=>a+pc(last[s]),0)/subs.length*10)/10;
+ const low=subs.filter(s=>pc(last[s])<50);
+ const sc=el("section","card"),ok=avg>=st.T&&!low.length;
+ sc.innerHTML='<h3>Where you stand (latest score per subject)</h3><p><span class="big '+(ok?"ok":"bad")+'">'+avg+'%</span> <span class="mu">average of '+subs.join(", ")+" vs target "+st.T+"%</span></p><p class=\""+(ok?"ok":"bad")+"\">"+(ok?"On track to pass. Keep drilling weak topics.":low.length?"Below 50% in "+low.join(", ")+": fix this first, one failing subject can sink you.":"Gap of "+Math.round((st.T-avg)*10)/10+" points to target. Focus on flagged weak topics.")+"</p>";
+ v.appendChild(sc);
+ const W=300,H=130,x=i=>20+(M.length>1?i*(W-30)/(M.length-1):(W-30)/2),y=p=>H-15-p*(H-25)/100;
+ let svg='<svg viewBox="0 0 '+W+" "+H+'" role="img" aria-label="Mock exam scores over time, target line at '+st.T+' percent"><line x1="20" x2="'+(W-5)+'" y1="'+y(st.T)+'" y2="'+y(st.T)+'" stroke="var(--s3)" stroke-dasharray="4"/><line x1="20" x2="'+(W-5)+'" y1="'+y(50)+'" y2="'+y(50)+'" stroke="var(--bad)" stroke-dasharray="2"/><text x="2" y="'+(y(st.T)+3)+'" font-size="8" fill="var(--mu)">'+st.T+'</text><text x="2" y="'+(y(50)+3)+'" font-size="8" fill="var(--mu)">50</text><polyline fill="none" stroke="var(--ac)" stroke-width="2" points="'+M.map((m,i)=>x(i)+","+y(pc(m))).join(" ")+'"/>';
+ M.forEach((m,i)=>svg+='<circle cx="'+x(i)+'" cy="'+y(pc(m))+'" r="3.5" fill="var(--ac)"/>');
+ const cc=el("section","card");cc.innerHTML="<h3>Trend</h3>"+svg+"</svg>";v.appendChild(cc);
+ const tc=el("section","card"),tb=el("table");tb.innerHTML="<tr><th>Date</th><th>Subject</th><th>Score</th><th></th></tr>";
+ M.slice().reverse().forEach(m=>{const r=el("tr"),p=pc(m);
+  r.innerHTML="<td></td><td></td><td></td><td></td>";const td=r.children;
+  td[0].textContent=m.d;td[1].textContent=m.s;td[2].textContent=m.c+"/"+m.n+" ("+p+"%)";td[2].className=p<50?"bad":p>=st.T?"ok":"";
+  if(m.t){td[1].append(el("div","mu",m.t))}
+  const b=el("button","btn2","Delete");b.setAttribute("aria-label","Delete mock score from "+m.d);b.onclick=()=>{st.M.splice(st.M.indexOf(m),1);save();render()};td[3].appendChild(b);tb.appendChild(r)});
+ tc.append(tb);v.appendChild(tc);
+}
+function render(){
+ head();tabs();const v=$("view");v.innerHTML="";
+ if(tab<3)topics(v);else mocks(v);
+}
+$("ed").value=st.ED;$("ed").onchange=()=>{st.ED=$("ed").value;save();render()};
+$("logb").onclick=()=>{const m=+$("mins").value;if(m>0){const k=dk(new Date());st.L[k]=(st.L[k]||0)+m;$("mins").value="";save();head()}};
+$("cp").onclick=()=>{$("bk").select();try{navigator.clipboard.writeText($("bk").value);$("bmsg").textContent="Copied."}catch(e){$("bmsg").textContent="Press Ctrl+C to copy."}};
+$("rs").onclick=()=>{try{const r=JSON.parse($("bk").value);if(!r||typeof r!="object"||!r.S)throw 0;st=Object.assign({S:{},W:{},N:{},M:[],ED:"",T:70,L:{}},r);save();$("ed").value=st.ED;render();$("bmsg").textContent="Restored."}catch(e){$("bmsg").textContent="That text is not valid backup data."}};
+$("reset").onclick=()=>{if(confirm("Delete all your progress, notes and scores?")){st={S:{},W:{},N:{},M:[],ED:"",T:70,L:{}};save();$("ed").value="";render()}};
+render();
+</script>
+</body>
+</html>
